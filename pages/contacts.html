@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Контакты — Chill Gallery</title>
+    <link rel="stylesheet" href="../style/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+
+</head>
+<body>
+<a class="skip-link" href="#main">К контенту</a>
+<header class="header">
+    <p class="site-subtitle">контакты</p>
+    <nav class="nav" aria-label="Основная навигация">
+        <ul class="nav-list">
+            <li><a class="nav-link" href="../index.html">главная</a></li>
+            <li><a class="nav-link" href="news.html">новости</a></li>
+            <li><a class="nav-link" href="practices.html">практики</a></li>
+            <li><a class="nav-link" href="goods.html">товары</a></li>
+            <li><a class="nav-link" href="contacts.html" aria-current="page">контакты</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main" class="main">
+    <section class="contacts">
+        <img class="contact-photo" src="../images/contact-400.jpg" width="320" height="240" alt="Пёс приветствует">
+        <p><strong>E-mail:</strong> <a class="contact-link" href="mailto:hello@chill.gallery">hello@chill.gallery</a></p>
+        <p><strong>Telegram:</strong> <a class="contact-link" href="#">@chill_gallery</a></p>
+        <div class="contact-buttons">
+            <button class="btn" onclick="contactModal.showModal()">Написать нам</button>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">© 2025 chill.gallery</footer>
+
+<dialog id="contactModal">
+    <form id="feedbackForm" method="dialog" class="modal">
+        <h2>Обратная связь</h2>
+        <label>Имя <input required name="name"></label>
+        <label>E-mail <input required type="email" name="email"></label>
+        <label>Сообщение <textarea required name="message"></textarea></label>
+        <div class="modal__actions">
+            <button class="btn btn--ghost" value="cancel">Отмена</button>
+            <button class="btn" value="ok">Отправить</button>
+        </div>
+    </form>
+</dialog>
+
+<script>
+    document.getElementById('contactModal').addEventListener('click', e=>{
+        if(e.target.nodeName==='DIALOG') e.target.close();
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,514 @@
+﻿:root{
+    color-scheme: light dark;
+
+    --nav-size: clamp(16px, 1.1vw + .2rem, 20px); /* адаптивный размер меню */
+    --nav-tracking: .2px;
+
+    /* светлая тема — мягкие, теплые */
+    --bg: #73838a; /* общий фон */
+    --bg2: #4a6c26;
+    --bg3: #afbaae;
+    --nav-bg: #587c8f;
+    --nav-fg: #E5E6E1;
+    --fg: #3A3A32;           /* базовый текст (не угольно-чёрный) */
+    --fg-soft: #4A4A42;      /* чуть контрастнее, для заголовков */
+    --muted: #487047;        /* подписи/вторичный текст */
+    --link: #6EA9C9;         /* спокойная небесная ссылка */
+    --link-hover: #5A97B8;   /* ховер без резкой насыщенности */
+    --border: #ffffff;       /* деликатные границы/разделители */
+
+    --card: #dfe7ec;         /* карточки */
+    --card-soft: #dfe8df;    /* мягкие блоки/панели */
+
+    --accent: #8EB9D4;       /* акцентные элементы */
+    --accent-soft: #ccd8ea;  /* пастель акцента */
+
+    --shadow: 0 4px 10px rgba(0,0,0,.06);
+
+
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 16px;
+    --space-lg: 24px;
+    --space-xl: 40px;
+
+    --glass-bg: rgba(255,255,255,.10);
+    --glass-bg-strong: rgba(255,255,255,.16);
+    --glass-border: rgba(255, 255, 255, 0.12);
+    --glass-blur: 14px;
+    --glass-radius: 18px;
+    --glass-shadow: 0 8px 30px rgba(0,0,0,.12);
+}
+
+html, body {
+    min-height: 100%;
+}
+
+html{
+    background: linear-gradient(
+            to bottom,
+            var(--bg2),
+            var(--bg3)
+    );
+}
+
+body{
+    margin: 0;
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    background: transparent; /* важно */
+    color: var(--fg);
+}
+.page {
+    min-height: 100vh; /* фолбэк для старых браузеров (может не учитывать
+панели на мобилках) */
+    min-height: 100svh; /* стабильный минимум: высота экрана с панелями
+(всегда влезет) */
+    min-height: 100dvh; /* на новых браузерах — актуальная видимая высота,
+обновляется при скролле */
+    display: flex;
+    flex-direction: column;
+}
+main { flex: 1;
+    background: rgba(255, 255, 255, 0.17);
+}
+
+
+.header{
+    position: sticky;
+    top: 0;
+    padding-block-start: calc(.75rem + env(safe-area-inset-top));
+    padding-block-end: .75rem;
+    padding-inline-start: calc(var(--space-md, 1rem) + env(safe-area-inset-left));
+    padding-inline-end: calc(var(--space-md, 1rem) + env(safe-area-inset-right));
+
+    background-image: url("../images/bg_h.png");
+    background-size: cover;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+
+    color: var(--nav-fg);
+    z-index: 100;
+    isolation: isolate;
+    box-shadow: 0 1px 3px rgba(0,0,0,.1);
+}
+
+.nav-toggle{
+    display: none;
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.25);
+    color: var(--nav-fg);
+    border-radius: 999px;
+    padding: .5rem .9rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+}
+
+.nav {
+    padding: 25px 0 40px;
+    grid-area: nav;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+@media (max-width: 1500px) {
+    .nav {
+        padding: 20px 0 40px;
+    }
+}
+
+@media (max-width: 1300px) {
+    .nav {
+        padding: 15px 0 35px;
+    }
+}
+
+@media (max-width: 1000px) {
+    .nav {
+        padding: 10px 0 30px;
+    }
+}
+
+@media (max-width: 800px) {
+    .nav {
+        padding: 5px 0 20px;
+    }
+}
+
+
+
+.nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+
+    padding: .6rem 1.2rem;
+    width: fit-content;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 1.4rem;
+
+    align-items: center;
+
+    position: relative;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow), inset 0 1px 0 rgba(255,255,255,.6);
+
+    backdrop-filter: blur(var(--glass-blur)) saturate(130%);
+    -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(130%);
+}
+
+
+.nav-item {
+    margin: 0;
+}
+.nav-link {
+    font-family: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
+    font-size: var(--nav-size);
+    letter-spacing: var(--nav-tracking);
+    font-weight: 600;
+
+    color: var(--nav-fg);
+    text-decoration: none;
+    padding: 12px 25px;
+    border-radius: 25px;
+
+    display: inline-block;
+    transition: transform .25s ease, background-color .25s ease;
+    transform-origin: center;
+}
+
+/* МОБИЛЬНЫЙ РЕЖИМ */
+@media (max-width: 800px){
+    /* кнопку показываем */
+    .nav-toggle{
+        display: inline-flex;
+        align-items: center;
+        gap: .4rem;
+        margin-inline: auto;       /* по центру */
+    }
+
+    /* список делаем колонкой и прячем */
+    .nav-list{
+        flex-direction: column;
+        align-items: center;
+        gap: .8rem;
+
+        max-height: 0;             /* спрятано */
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(-8px);
+        pointer-events: none;
+
+        transition: max-height .25s ease, opacity .2s ease, transform .2s ease;
+        margin-top: .6rem;
+        padding-bottom: .6rem;
+    }
+
+    /* когда nav открыто — раскрываем */
+    .nav.open .nav-list{
+        max-height: 60vh;          /* хватает на все пункты */
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    /* уменьшаем текст аккуратно (не обязаловка, но помогает) */
+    .nav-link{
+        font-size: clamp(14px, 3.2vw, 18px);
+        padding: .4rem 1rem;
+    }
+}
+
+.nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+.nav-link.active {
+    background: rgba(255,255,255,0.2);
+    font-weight: 700;
+}
+
+
+
+.main {
+    width: 70%;
+    padding: 40px;
+    margin: 0 auto;
+    grid-area: main;
+}
+
+
+.card{
+    background: linear-gradient(
+            135deg,
+            rgba(191, 202, 216, 0.22),
+            rgba(255,255,255,.06)
+    );
+    padding: var(--space-md);                /* базовые внутренние отступы */
+    margin-top: 20px;
+    min-width: 0;                            /* чтобы длинный текст не ломал сетку */
+    transition: transform .2s ease, box-shadow .2s ease;
+
+    border: 1px solid var(--glass-border);
+    border-radius: var(--glass-radius);  /* хочешь прямоугольные — поставь 0 */
+    box-shadow: var(--glass-shadow);
+
+    backdrop-filter: blur(10px) saturate(120%);
+    -webkit-backdrop-filter: blur(10px) saturate(120%);
+}
+
+.card::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    pointer-events:none;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,.5);
+    opacity:.8;
+}
+.card{ position:relative; }
+
+/* Общая база для всех заголовков внутри карточек */
+.card :is(h1, h2, h3, h4, h5, h6){
+    font-family: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
+    letter-spacing: .02em;
+    line-height: 1.25;
+    margin: 0 0 .7rem;
+}
+
+/* Большие заголовки — muted, но контрастные и по центру */
+.card h1{
+    color: var(--muted);
+    font-size: clamp(20px, 1.6vw + .5rem, 26px);
+    font-weight: 700;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,.65); /* чтобы не "терялись" на светлом фоне */
+    margin-bottom: .9rem;
+}
+
+.card h2{
+    color: var(--muted);
+    font-size: clamp(18px, 1.3vw + .4rem, 22px);
+    font-weight: 650;
+    text-align: center;
+    text-shadow: 0 1px 0 rgba(255,255,255,.6);
+    margin-bottom: .8rem;
+}
+
+/* Средние заголовки — fg-soft */
+.card h3{
+    color: var(--fg-soft);
+    font-size: clamp(16px, 1vw + .35rem, 20px);
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: .6rem;
+}
+
+.card h4{
+    color: var(--fg-soft);
+    font-size: clamp(15px, .8vw + .3rem, 18px);
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: .5rem;
+}
+
+.card h5{
+    color: var(--fg);
+    font-size: clamp(14px, .6vw + .25rem, 16px);
+    font-weight: 600;
+    text-align: left;
+    margin-bottom: .4rem;
+}
+
+
+.two-col-layout{
+    display: grid;
+    grid-template-columns: 1fr;  /* по умолчанию (телефон) — столбиком */
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+@media (min-width: 800px){
+    .two-col-layout{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 1000px){
+    .two-col-layout{
+        grid-template-columns: 2fr 3fr;
+    }
+}
+
+.profile-list{
+    padding-inline: 1.6rem;  /* отступы слева и справа */
+}
+
+.profile-photo{
+    display: block;
+    max-inline-size: 100%;
+    inline-size: min(100%, 320px);  /* вот это и делает его "нормальным" */
+    aspect-ratio: 4 / 3;            /* держим красивую форму */
+    object-fit: cover;
+
+    margin: .75rem auto 1rem;
+    padding: .35rem;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+.profile-text{
+    font-family: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
+    color: var(--fg);
+    font-size: clamp(18px, .7vw + .25rem, 16px);
+    line-height: 1.45;
+    text-align: center;
+    margin: 0.15rem 0;
+}
+
+
+.about-list{
+    display: grid;
+    gap: var(--space-lg);
+}
+
+@media (min-width: 1600px){
+    .about-list{
+        grid-template-columns: repeat(2, minmax(0, 1fr))
+    }
+}
+
+.about-item{
+    background: linear-gradient(100deg,
+    var(--card-soft),
+    var(--card));
+    border: 1px solid var(--border);
+    padding: var(--space-md);
+}
+
+.about-title,
+.about-subtitle{
+    margin-top: 0;
+    text-align: center;
+    color: var(--muted);
+}
+
+.about-text{
+    margin: .5rem 0 1rem;
+    text-align: center;
+
+}
+
+.about-links{
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    justify-content: center;
+}
+
+/* если .btn у тебя уже есть — оставь только модификаторы */
+.btn{
+    display: inline-block;
+    font: inherit;
+    padding-inline: 1rem;
+    padding-block: max(.5rem, calc((44px - 1em)/2));
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: var(--fg);
+    background: var(--accent-soft);
+    box-shadow: var(--shadow);
+    transition: transform .2s ease, background-color .2s ease;
+}
+.btn:hover{
+    background: var(--accent);
+    transform: translateY(-1px);
+}
+.btn--ghost{ background: transparent; }
+.btn--soft{ background: var(--accent-soft); }
+
+.chips{
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: .5rem;
+    padding: 0;
+    margin: .75rem 0 0;
+    justify-content: center;
+}
+.chip{
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: .25rem .6rem;
+    border-radius: 999px;
+    font-size: .95rem;
+}
+
+.about-note{
+    color: var(--muted);
+    font-size: .95rem;
+    text-align: center;
+    margin-bottom: 0;
+}
+
+.about-cat{
+    display: block;
+    width: 100%;        /* тянемся вместе с блоком по ширине */
+    max-width: 300px;
+    height: auto;       /* пока можно — держим пропорции */
+    max-height: 150px;  /* максимум по высоте */
+    margin-inline: auto;
+}
+
+
+
+
+.mini-photo{
+    display: block;
+    max-inline-size: 100%;
+    inline-size: min(100%, 320px);
+    aspect-ratio: 2 / 5;
+    object-fit: cover;
+
+    margin: .75rem auto 1rem;
+    padding: .35rem;
+    border-radius: 0;
+}
+
+.borzoi-layout{
+    display: grid;
+}
+
+.borzoi-layout{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1rem;
+    align-items: stretch;
+}
+
+/* 2) Картинки внутри этой сетки пусть заполняют ячейку */
+.photo{
+    width: 100%;
+    max-width: none;     /* снимаем лимит 320px */
+    height: auto;
+    aspect-ratio: auto; /* убираем 2/5, пусть будет естественное */
+    object-fit: cover;
+
+    margin: 0;           /* убираем auto-центрирование */
+    padding: 0;          /* чтобы не сужало ячейки */
+    border-radius: .6rem;
+}
+
+
+
+
+

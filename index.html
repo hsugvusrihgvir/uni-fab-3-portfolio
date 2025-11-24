@@ -1,0 +1,139 @@
+﻿<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Chill Gallery — привет</title>
+    <link rel="stylesheet" href="style/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
+
+</head>
+
+
+<body>
+
+
+<header class="header">
+    <nav class="nav">
+        <button class="nav-toggle" type="button"
+                aria-expanded="false"
+                aria-controls="nav-list">
+            ☰
+            <span class="visually-hidden">Меню</span>
+        </button>
+        <ul class="nav-list"  id="nav-list">
+            <li><a class="nav-link" href="index.html">главная</a></li>
+            <li><a class="nav-link" href="pages/news.html">новости</a></li>
+            <li><a class="nav-link" href="pages/practices.html">практики</a></li>
+            <li><a class="nav-link" href="pages/goods.html">товары</a></li>
+            <li><a class="nav-link" href="pages/contacts.html">контакты</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main id="main" class="main">
+    <div class="two-col-layout">
+        <section class="card">
+            <div class="profile-list" role="list">
+                <article class="profile-header">
+                    <h1>Автор</h1>
+                    <img class="profile-photo" src="images/photo.jpg" alt="Фото автора" width="400" height="300">
+                    <h2>Емельянова Дарья Олеговна</h2>
+                    <p class="profile-text">ЭФБО-03-24</p>
+                    <p class="profile-text">Круглосуточно ищу баблтишные рядом.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="card">
+            <div class="about-list" role="list">
+
+                <!-- Блок "где я" -->
+                <article class="about-item" role="listitem">
+                    <h1 class="about-title">Где меня найти</h1>
+
+                    <p class="about-text">
+                        (лучше не стоит)
+                    </p>
+
+                    <div class="about-links">
+                        <a class="btn btn--soft" href="https://github.com/hsugvusrihgvir"
+                           target="_blank" rel="noopener">
+                            GitHub ↗
+                        </a>
+
+                        <!-- если не хочешь показывать — удали -->
+                        <a class="btn btn--soft" href="mailto:daria@emelianova-0.ru">
+                            почта ↗
+                        </a>
+
+                    </div>
+                </article>
+
+                <!-- Блок "что изучаю" -->
+                <article class="about-item" role="listitem">
+                    <h2 class="about-subtitle">Стек</h2>
+
+                    <ul class="chips">
+                        <!-- подправь под себя -->
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                        <li class="chip">Python</li>
+                    </ul>
+
+                    <p class="about-note">
+                        Постепенно пополняю список
+                    </p>
+                </article>
+
+
+            </div>
+            <img class="mini-photo" src="images/dogs.png" alt="Забавное фото" width="600" height="100">
+
+        </section>
+    </div>
+
+    <section class="card borzoi">
+        <h1>Картинки с борзыми</h1>
+        <div class="borzoi-layout">
+            <img class="photo" src="images/borzoi/1.jpg" alt="Забавное фото" width="200" height="500">
+            <img class="photo" src="images/borzoi/2.jpg" alt="Забавное фото" width="200" height="500">
+            <img class="photo" src="images/borzoi/3.jpg" alt="Забавное фото" width="200" height="500">
+            <img class="photo" src="images/borzoi/4.jpg" alt="Забавное фото" width="200" height="500">
+        </div>
+
+    </section>
+
+
+</main>
+
+<footer class="footer">© 2025 chill.gallery</footer>
+
+<script>
+    const nav = document.querySelector('.nav');
+    const btn = document.querySelector('.nav-toggle');
+
+    if (nav && btn) {
+        btn.addEventListener('click', () => {
+            const isOpen = nav.classList.toggle('open');
+            btn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        });
+
+        // по желанию: закрывать меню после клика по пункту
+        nav.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('open');
+                btn.setAttribute('aria-expanded', 'false');
+            });
+        });
+    }
+</script>
+
+</body>
+</html>
