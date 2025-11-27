@@ -16,7 +16,7 @@
 
 
 <header class="header">
-    <nav class="nav">
+    <nav class="nav" aria-label="Основная навигация">
         <button class="nav-toggle" type="button"
                 aria-expanded="false"
                 aria-controls="nav-list">
@@ -24,7 +24,7 @@
             <span class="visually-hidden">Меню</span>
         </button>
         <ul class="nav-list"  id="nav-list">
-            <li><a class="nav-link active" href="index.html">главная</a></li>
+            <li><a class="nav-link active" href="index.html" aria-current="page">главная</a></li>
             <li><a class="nav-link" href="pages/news.html">новости</a></li>
             <li><a class="nav-link" href="pages/practices.html">практики</a></li>
             <li><a class="nav-link" href="pages/goods.html">товары</a></li>
@@ -35,10 +35,10 @@
 
 <main id="main" class="main">
     <div class="two-col-layout">
-        <section class="card">
+        <section class="card profile-card">
             <div class="profile-list" role="list">
-                <article>
-                    <h1>Автор</h1>
+                <article class="profile-article">
+                    <h1 id="profile-h">Автор</h1>
                     <img class="profile-photo" src="images/photo.png" alt="Фото автора" width="400" height="300">
                     <h2 class="profile-name">Емельянова Дарья Олеговна</h2>
                     <p class="profile-text">ЭФБО-03-24</p>
@@ -98,10 +98,41 @@
     <section class="card borzoi">
         <h1>Картинки с борзыми</h1>
         <div class="borzoi-layout">
-            <img class="photo" src="images/borzoi/1.jpg" alt="Забавное фото" width="200" height="500" loading="lazy">
-            <img class="photo" src="images/borzoi/2.jpg" alt="Забавное фото" width="200" height="500" loading="lazy">
-            <img class="photo" src="images/borzoi/3.jpg" alt="Забавное фото" width="200" height="500" loading="lazy">
-            <img class="photo" src="images/borzoi/4.jpg" alt="Забавное фото" width="200" height="500" loading="lazy">
+            <picture>
+                <source srcset="images/borzoi/1.avif" type="image/avif">
+                <img class="photo"
+                     src="images/borzoi/1.jpg"
+                     alt="Забавное фото"
+                     width="200" height="500"
+                     loading="lazy">
+            </picture>
+
+            <picture>
+                <source srcset="images/borzoi/2.avif" type="image/avif">
+                <img class="photo"
+                     src="images/borzoi/2.jpg"
+                     alt="Забавное фото"
+                     width="200" height="500"
+                     loading="lazy">
+            </picture>
+
+            <picture>
+                <source srcset="images/borzoi/3.avif" type="image/avif">
+                <img class="photo"
+                     src="images/borzoi/3.jpg"
+                     alt="Забавное фото"
+                     width="200" height="500"
+                     loading="lazy">
+            </picture>
+
+            <picture>
+                <source srcset="images/borzoi/4.avif" type="image/avif">
+                <img class="photo"
+                     src="images/borzoi/4.jpg"
+                     alt="Забавное фото"
+                     width="200" height="500"
+                     loading="lazy">
+            </picture>
         </div>
 
     </section>

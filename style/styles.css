@@ -331,7 +331,7 @@ main {
 
 /* Большие заголовки — muted, но контрастные и по центру */
 .card h1{
-    color: var(--nav-fg);
+    color: var(--fg);
     font-size: clamp(20px, 1.6vw + .5rem, 26px);
     font-weight: 700;
     text-align: center;
@@ -365,6 +365,14 @@ main {
     z-index: -1;               /* фон под контентом */
 }
 
+.profile-card{
+    background: linear-gradient(
+            135deg,
+            rgba(108, 135, 163, 0.47) 30%,
+            rgba(255, 255, 255, 0.1) 100%
+    );
+}
+
 .two-col-layout{
     display: grid;
     grid-template-columns: 1fr;  /* по умолчанию (телефон) — столбиком */
@@ -387,6 +395,15 @@ main {
     padding-inline: 1.6rem;  /* отступы слева и справа */
 }
 
+.profile-article{
+    display: grid;
+    justify-items: center;
+}
+
+#profile-h{
+    color: var(--nav-fg);
+}
+
 .profile-photo{
     display: block;
     max-inline-size: 100%;
@@ -397,7 +414,7 @@ main {
 
     margin: .75rem auto 1rem;
     padding: .35rem;
-    border-radius: 0;
+    border-radius: 1rem;
     box-shadow: 0 8px 18px rgba(0,0,0,.12);
 }
 
@@ -475,6 +492,8 @@ main {
         grid-template-columns: 1fr 1fr;
     }
 }
+
+
 /* стеклянные плитки "Где меня найти" и "Стек" */
 .about-item{
     position: relative;
@@ -500,6 +519,7 @@ main {
 
     overflow: hidden; /* чтобы блик не вылезал за края */
 }
+
 
 /* лёгкий блик, чтобы был реальный glass-вайб */
 .about-item::before{
@@ -623,12 +643,14 @@ main {
     width: 100%;
     max-width: none;     /* снимаем лимит 320px */
     height: auto;
-    aspect-ratio: auto; /* убираем 2/5, пусть будет естественное */
     object-fit: cover;
 
     margin: 0;           /* убираем auto-центрирование */
     padding: 0;          /* чтобы не сужало ячейки */
     border-radius: .6rem;
+    display: block;          /* чтобы вел себя как блок-элемент */
+    aspect-ratio: 1/1;     /* общая пропорция для всех карточек */
+    overflow: hidden;
 }
 
 
@@ -668,7 +690,10 @@ main {
     font-family: "Manrope","Segoe UI",sans-serif;
 }
 
-
+:where(a, button):focus-visible {
+    outline: 2px solid #fb2d2d;
+    outline-offset: 3px;
+}
 
 
 
