@@ -12,7 +12,6 @@
     --fg-soft: #4A4A42;
     --muted: #43515a;
 
-    --card: rgb(233, 241, 236);
 
 
     --space-md: 16px;
@@ -38,11 +37,10 @@ html{
                     var(--bg3) 30%,
                     var(--bg3) 100%
             );
-    background-repeat: repeat, no-repeat; /* */
+    background-repeat: repeat, no-repeat;
     background-blend-mode: soft-light, normal;
 
 }
-
 @media (max-width: 1100px) {
     html{
         background-image:
@@ -55,7 +53,6 @@ html{
                 );
     }
 }
-
 @media (max-width: 877px) {
     html{
         background-image:
@@ -72,10 +69,9 @@ html{
 body{
     margin: 0;
     font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    background: transparent; /* важно */
+    background: transparent;
     color: var(--fg);
 }
-
 
 .page {
     min-height: 100vh; /* фолбэк для старых браузеров (может не учитывать
@@ -90,10 +86,19 @@ body{
 
 main {
     flex: 1;
+    width: 70%;
+    padding: 40px;
+    margin: 0 auto;
+    grid-area: main;
+}
+@media (max-width: 700px) {
+    .main {
+        width: 80%;
+    }
 }
 
 
-
+/* НАВИГАЦИЯ */
 .header{
     position: sticky;
     top: 0;
@@ -102,16 +107,13 @@ main {
     padding-inline-start: calc(var(--space-md, 1rem) + env(safe-area-inset-left));
     padding-inline-end: calc(var(--space-md, 1rem) + env(safe-area-inset-right));
 
-    /* Фолбек для старых браузеров */
     background-image: url("../images/bg_h.jpg");
 
-    /* Chrome / Edge (нужен префикс) */
     background-image: -webkit-image-set(
             url("../images/bg_h.avif") type("image/avif"),
             url("../images/bg_h.jpg")  type("image/jpeg")
     );
 
-    /* Остальные современные браузеры */
     background-image: image-set(
             url("../images/bg_h.avif") type("image/avif"),
             url("../images/bg_h.jpg")  type("image/jpeg")
@@ -147,32 +149,26 @@ main {
     align-items: center;
 
 }
-
 @media (max-width: 1500px) {
     .nav {
         padding: 20px 0 40px;
     }
 }
-
 @media (max-width: 1300px) {
     .nav {
         padding: 15px 0 35px;
     }
 }
-
 @media (max-width: 1000px) {
     .nav {
         padding: 10px 0 30px;
     }
 }
-
 @media (max-width: 800px) {
     .nav {
         padding: 5px 0 20px;
     }
 }
-
-
 
 .nav-list {
     display: flex;
@@ -197,7 +193,6 @@ main {
     -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(130%);
 }
 
-
 .nav-link {
     font-family: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
     font-size: var(--nav-size);
@@ -214,23 +209,22 @@ main {
     transform-origin: center;
 }
 
-/* МОБИЛЬНЫЙ РЕЖИМ */
+/* для маленькиз экранов */
 @media (max-width: 800px){
-    /* кнопку показываем */
     .nav-toggle{
         display: inline-flex;
         align-items: center;
         gap: .4rem;
-        margin-inline: auto;       /* по центру */
+        margin-inline: auto;
     }
 
-    /* список делаем колонкой и прячем */
+
     .nav-list{
         flex-direction: column;
         align-items: center;
         gap: .8rem;
 
-        max-height: 0;             /* спрятано */
+        max-height: 0;
         overflow: hidden;
         opacity: 0;
         transform: translateY(-8px);
@@ -241,15 +235,15 @@ main {
         padding-bottom: .6rem;
     }
 
-    /* когда nav открыто — раскрываем */
+
     .nav.open .nav-list{
-        max-height: 60vh;          /* хватает на все пункты */
+        max-height: 60vh;
         opacity: 1;
         transform: translateY(0);
         pointer-events: auto;
     }
 
-    /* уменьшаем текст аккуратно (не обязаловка, но помогает) */
+
     .nav-link{
         font-size: clamp(14px, 3.2vw, 18px);
         padding: .4rem 1rem;
@@ -280,45 +274,44 @@ main {
 }
 
 
+/* БАЗОВЫЕ ЭЛЕМЕНТЫ */
 
-.main {
-    width: 70%;
-    padding: 40px;
-    margin: 0 auto;
-    grid-area: main;
+/* расположение карточек */
+.two-col-layout{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    align-items: stretch;
 }
-
-@media (max-width: 700px) {
-    .main {
-        width: 80%;
+@media (min-width: 1000px){
+    .two-col-layout{
+        grid-template-columns: 1fr 1fr;
+    }
+}
+@media (min-width: 1200px){
+    .two-col-layout{
+        grid-template-columns: 2fr 3fr;
     }
 }
 
-
+/* КАРТОЧКИ */
 .card{
-    padding: var(--space-md);                /* базовые внутренние отступы */
+    padding: var(--space-md);
     margin-top: 20px;
-    min-width: 0;                            /* чтобы длинный текст не ломал сетку */
+    min-width: 0;
     background: linear-gradient(
             135deg,
             rgba(255, 255, 255, 0.39) 30%,
             rgba(253, 253, 253, 0.1) 100%
     );
-    border-radius: var(--glass-radius);  /* хочешь прямоугольные — поставь 0 */
+    border-radius: var(--glass-radius);
     box-shadow: var(--glass-shadow);
-
-    /* вместо текущего background-градиента: */
-    /* если хочешь лёгкий градиент — поверх: */
-    /* background-image: linear-gradient(135deg, rgba(255,255,255,0.32), rgba(255,255,255,0.12)); */
-
-    border: 1px solid rgba(255,255,255,0.6);   /* тонкая светлая рамка */
+    border: 1px solid rgba(255,255,255,0.6);
 
     backdrop-filter: blur(18px) saturate(130%);
     -webkit-backdrop-filter: blur(18px) saturate(130%);
-
 }
 
-/* внутренний мягкий свет */
 .card::after{
     content:"";
     position:absolute;
@@ -330,9 +323,7 @@ main {
 }
 .card{ position:relative; }
 
-
-
-/* Общая база для всех заголовков внутри карточек */
+/* заголовки */
 .card :is(h1, h2, h3, h4, h5, h6){
     font-family: "Manrope", "Segoe UI", Roboto, Arial, sans-serif;
     letter-spacing: .02em;
@@ -340,7 +331,6 @@ main {
     margin: 0 0 .7rem;
 }
 
-/* Большие заголовки — muted, но контрастные и по центру */
 .card h1{
     color: var(--fg);
     font-size: clamp(20px, 1.6vw + .5rem, 26px);
@@ -359,23 +349,22 @@ main {
     margin-bottom: .8rem;
 }
 
-
-
-/* полупрозрачная картинка-фон */
+/* картинка на карточке справа */
 #about-card::before{
     content: "";
     position: absolute;
-    inset: 0;                  /* растянуть на всю карточку */
+    inset: 0;
 
     background-image: url("../images/bg1.png");
-    background-size: cover;    /* картинка покрывает всю карточку */
+    background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
 
-    opacity: 0.5;              /* 50% прозрачность */
-    z-index: -1;               /* фон под контентом */
+    opacity: 0.5;
+    z-index: -1;
 }
 
+/* градиент на карточке слева */
 .profile-card{
     background: linear-gradient(
             135deg,
@@ -384,42 +373,29 @@ main {
     );
 }
 
-.two-col-layout{
-    display: grid;
-    grid-template-columns: 1fr;  /* по умолчанию (телефон) — столбиком */
-    gap: 1.5rem;
-    align-items: stretch;
-}
 
-@media (min-width: 1000px){
-    .two-col-layout{
-        grid-template-columns: 1fr 1fr;
-    }
-}
-@media (min-width: 1200px){
-    .two-col-layout{
-        grid-template-columns: 2fr 3fr;
-    }
-}
-
+/* ПРОФИЛЬ */
 .profile-list{
-    padding-inline: 1.6rem;  /* отступы слева и справа */
+    padding-inline: 1.6rem;
 }
+
 
 .profile-article{
     display: grid;
     justify-items: center;
 }
 
+
 #profile-h{
     color: var(--nav-fg);
 }
 
+
 .profile-photo{
     display: block;
     max-inline-size: 100%;
-    inline-size: min(100%, 320px);  /* вот это и делает его "нормальным" */
-    aspect-ratio: 4 / 3;            /* держим красивую форму */
+    inline-size: min(100%, 320px);
+    aspect-ratio: 4 / 3;
     object-fit: cover;
     background: rgba(255, 255, 255, 0.33);
 
@@ -428,7 +404,6 @@ main {
     border-radius: 1rem;
     box-shadow: 0 8px 18px rgba(0,0,0,.12);
 }
-
 
 
 .profile-name{
@@ -441,6 +416,7 @@ main {
     text-shadow: 0 1px 0 rgba(255,255,255,0.8);
     position: relative;
 }
+
 
 .profile-name::after{
     content: "";
@@ -478,6 +454,8 @@ main {
     color: var(--muted);
 }
 
+
+/* ПУНКТ ОБО МНЕ */
 .about-list{
     display: grid;
     gap: var(--space-lg);
@@ -485,13 +463,11 @@ main {
     align-items: stretch;
     margin-top: 1rem;
 }
-
 @media (min-width: 737px){
     .about-list{
         grid-template-columns: 1fr 1fr;
     }
 }
-
 @media (min-width: 1000px){
     .about-list{
         grid-template-columns: 1fr;
@@ -505,7 +481,7 @@ main {
 }
 
 
-/* стеклянные плитки "Где меня найти" и "Стек" */
+/* мини карточки */
 .about-item{
     position: relative;
     display: flex;
@@ -531,8 +507,6 @@ main {
     overflow: hidden; /* чтобы блик не вылезал за края */
 }
 
-
-/* лёгкий блик, чтобы был реальный glass-вайб */
 .about-item::before{
     content: "";
     position: absolute;
@@ -547,7 +521,6 @@ main {
 }
 
 
-/* Заголовки "Где меня найти" и "Стек" — один стиль */
 .about-title,
 .about-subtitle {
     margin: 0 0 .75rem;
@@ -560,14 +533,14 @@ main {
     text-shadow: 0 1px 0 rgba(255,255,255,0.7);
 }
 
-/* текст под заголовком — чуть мягче */
+
 .about-text {
     margin: 0 0 1.1rem;
     text-align: center;
     color: var(--fg-soft);
 }
 
-/* чипсы и подпись оставляем, только чуть вычищаем вид */
+
 .chips {
     list-style: none;
     display: flex;
@@ -604,7 +577,7 @@ main {
     justify-content: center;
 }
 
-/* Спокойные кнопки GitHub / почта внутри "Где меня найти" */
+
 .about-btn{
     display: inline-flex;
     align-items: center;
@@ -642,6 +615,7 @@ main {
 }
 
 
+/* КАРТИНКИ С СОБАКАМИ */
 .borzoi-layout{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -649,22 +623,23 @@ main {
     align-items: stretch;
 }
 
-/* 2) Картинки внутри этой сетки пусть заполняют ячейку */
+
 .photo{
     width: 100%;
-    max-width: none;     /* снимаем лимит 320px */
+    max-width: none;
     height: auto;
     object-fit: cover;
 
-    margin: 0;           /* убираем auto-центрирование */
-    padding: 0;          /* чтобы не сужало ячейки */
+    margin: 0;
+    padding: 0;
     border-radius: .6rem;
-    display: block;          /* чтобы вел себя как блок-элемент */
-    aspect-ratio: 1/1;     /* общая пропорция для всех карточек */
+    display: block;
+    aspect-ratio: 1/1;
     overflow: hidden;
 }
 
 
+/* ФУТЕР */
 .footer{
     position: relative;
     margin-top: 3rem;
@@ -679,7 +654,7 @@ main {
 
     color: var(--fg-soft);
 
-    /* стеклянная плашка */
+
     background: linear-gradient(
             180deg,
             rgba(255,255,255,0.22),
@@ -695,7 +670,6 @@ main {
             0 -1px 0 rgba(255,255,255,0.5) inset;
 }
 
-/* чтобы текст не лип к краю на очень широких экранах */
 .footer span,
 .footer{
     font-family: "Manrope","Segoe UI",sans-serif;

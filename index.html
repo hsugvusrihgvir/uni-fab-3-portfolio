@@ -36,10 +36,11 @@
 <main id="main" class="main">
     <div class="two-col-layout">
         <section class="card profile-card">
-            <div class="profile-list" role="list">
+            <div class="profile-list">
                 <article class="profile-article">
                     <h1 id="profile-h">Автор</h1>
-                    <img class="profile-photo" src="images/photo.png" alt="Фото автора" width="400" height="300">
+                    <img class="profile-photo" src="images/photo.png" alt="Фото автора" width="400" height="300"  decoding="async"
+                         fetchpriority="high">
                     <h2 class="profile-name">Емельянова Дарья Олеговна</h2>
                     <p class="profile-text">ЭФБО-03-24</p>
                 </article>
@@ -48,9 +49,9 @@
 
         <section class="card" id="about-card">
             <h1>Обо мне</h1>
-            <div class="about-list" role="list">
+            <div class="about-list">
                 <!-- Блок "где я" -->
-                <article class="about-item" role="listitem">
+                <article class="about-item" >
                     <h2 class="about-title">Где меня найти</h2>
 
                     <p class="about-text">
@@ -71,7 +72,7 @@
                 </article>
 
                 <!-- Блок "что изучаю" -->
-                <article class="about-item" role="listitem">
+                <article class="about-item">
                     <h2 class="about-subtitle">Стек</h2>
 
                     <ul class="chips">
