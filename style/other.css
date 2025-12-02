@@ -1,0 +1,334 @@
+/* ==================== ОБЩИЕ ЗАГОЛОВКИ ДЛЯ ВНУТРЕННИХ СТРАНИЦ ==================== */
+
+
+/* ==================== СТРАНИЦА НОВОСТЕЙ ==================== */
+
+
+.news-list{
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    margin-top: 1.2rem;
+}
+
+.news-card{
+    position: relative;
+    padding: 1.1rem 1.4rem;
+    border-radius: 18px;
+    border: 1px solid rgba(255,255,255,0.7);
+    background: linear-gradient(
+            135deg,
+            rgba(255,255,255,0.60),
+            rgba(255,255,255,0.18)
+    );
+    box-shadow: 0 10px 22px rgba(0,0,0,0.16);
+    backdrop-filter: blur(16px) saturate(130%);
+    -webkit-backdrop-filter: blur(16px) saturate(130%);
+
+    display: grid;
+    grid-template-columns: minmax(0, 140px) minmax(0, 1fr);
+    gap: 1rem;
+    align-items: stretch;
+}
+
+.news-media{
+    align-self: stretch;
+}
+
+.news-image{
+    display: block;
+    width: 100%;
+    height: 100%;
+    max-height: 180px;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 6px 14px rgba(0,0,0,0.11);
+}
+
+.news-body{
+    display: flex;
+    flex-direction: column;
+    gap: .45rem;
+}
+
+.news-title{
+    margin: 0;
+    font-size: clamp(18px, 1.3vw + .4rem, 22px);
+    font-weight: 650;
+    color: var(--fg-soft);
+}
+
+.news-meta{
+    margin: 0;
+    font-size: .8rem;
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: var(--muted);
+    opacity: .9;
+}
+
+.news-text{
+    margin: 0;
+    color: var(--fg);
+    line-height: 1.6;
+}
+
+@media (max-width: 720px){
+    .news-card{
+        grid-template-columns: 1fr;
+    }
+
+    .news-image{
+        max-height: 210px;
+    }
+}
+
+
+/* ==================== СТРАНИЦА ТОВАРОВ ==================== */
+
+.goods-grid{
+    margin-top: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+    gap: 1.4rem;
+}
+
+.goods-card{
+    padding: 1.25rem 1.4rem 1.5rem;
+    border-radius: var(--glass-radius);
+    background: linear-gradient(
+            135deg,
+            rgba(255,255,255,.5),
+            rgba(255,255,255,.18)
+    );
+    border: 1px solid rgba(255,255,255,.8);
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(18px) saturate(130%);
+    -webkit-backdrop-filter: blur(18px) saturate(130%);
+
+    display: flex;
+    flex-direction: column;
+    gap: .6rem;
+}
+
+.goods-image{
+    display: block;
+    margin: 0 auto .6rem;
+    width: 80%;
+    aspect-ratio: 4 / 3;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+.goods-name{
+    margin: 0;
+    font-family: "Manrope","Segoe UI",sans-serif;
+    font-size: clamp(18px, 1.2vw + .3rem, 22px);
+    font-weight: 650;
+    color: var(--fg-soft);
+}
+
+.goods-price{
+    margin: 0 0 .4rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--muted);
+}
+
+
+/* ==================== БАЗОВАЯ КНОПКА ==================== */
+
+.btn{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: .55rem 1.4rem;
+    border-radius: 999px;
+    border: 1px solid rgba(255,255,255,0.96);
+
+    font-family: "Manrope","Segoe UI",sans-serif;
+    font-size: .95rem;
+    font-weight: 500;
+    letter-spacing: .02em;
+
+    color: var(--fg-soft);
+    background: rgba(255,255,255,0.96);
+    box-shadow: 0 8px 18px rgba(0,0,0,.12);
+
+    cursor: pointer;
+    text-decoration: none;
+
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+
+    transition:
+            transform .15s ease,
+            box-shadow .15s ease,
+            background .15s ease,
+            opacity .15s ease;
+}
+
+.btn:hover{
+    transform: translateY(-1px);
+    background: #ffffff;
+    box-shadow: 0 12px 26px rgba(0,0,0,.16);
+}
+
+.btn:active{
+    transform: translateY(0);
+    box-shadow: 0 5px 12px rgba(0,0,0,.1);
+}
+
+.btn.btn--ghost{
+    background: transparent;
+    color: var(--fg-soft);
+    border-color: rgba(255,255,255,0.75);
+    box-shadow: 0 6px 14px rgba(0,0,0,.10);
+}
+
+.btn.btn--ghost:hover{
+    background: rgba(255,255,255,0.18);
+}
+
+
+/* ==================== СТРАНИЦА КОНТАКТОВ ==================== */
+
+.contacts{
+    margin-top: 0;
+    padding: 1.75rem 1.9rem 2rem;
+
+    border-radius: var(--glass-radius);
+    border: 1px solid rgba(255,255,255,0.85);
+
+    background: linear-gradient(
+            135deg,
+            rgba(255,255,255,0.55),
+            rgba(255,255,255,0.2)
+    );
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(22px) saturate(130%);
+    -webkit-backdrop-filter: blur(22px) saturate(130%);
+
+    text-align: center;
+}
+
+.contact-photo{
+    display: block;
+    margin: 0 auto 1rem;
+    max-width: 260px;
+    width: 100%;
+    border-radius: 1rem;
+    object-fit: cover;
+    box-shadow: 0 8px 18px rgba(0,0,0,.12);
+}
+
+.contacts p{
+    margin: .35rem 0;
+    color: var(--fg-soft);
+}
+
+.contact-link{
+    color: var(--link);
+    text-decoration: none;
+}
+
+.contact-link:hover{
+    text-decoration: underline;
+}
+
+.contacts-layout{
+    margin-top: 1.6rem;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1.2fr);
+    gap: 1.5rem;
+    align-items: stretch;
+}
+
+@media (max-width: 880px){
+    .contacts-layout{
+        grid-template-columns: 1fr;
+    }
+}
+
+/* панель с формой справа */
+.contact-form{
+    margin-top: 0;
+    padding: 1.75rem 1.9rem 2rem;
+
+    border-radius: var(--glass-radius);
+    border: 1px solid rgba(255,255,255,0.9);
+
+    background: linear-gradient(
+            135deg,
+            rgba(255,255,255,0.96),
+            rgba(255,255,255,0.78)
+    );
+    box-shadow: var(--glass-shadow);
+    backdrop-filter: blur(22px) saturate(130%);
+    -webkit-backdrop-filter: blur(22px) saturate(130%);
+}
+
+.contact-form__title{
+    margin: 0 0 1rem;
+    text-align: center;
+    font-size: clamp(20px, 1.4vw + .4rem, 24px);
+    color: var(--fg-soft);
+}
+
+.contact-form__row{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: .8rem;
+}
+
+@media (max-width: 640px){
+    .contact-form__row{
+        grid-template-columns: 1fr;
+    }
+}
+
+.contact-form__field{
+    margin-bottom: .75rem;
+}
+
+.contact-form__label{
+    display: flex;
+    flex-direction: column;
+    gap: .25rem;
+    font-size: .9rem;
+    color: var(--fg-soft);
+}
+
+.contact-form input,
+.contact-form textarea{
+    font: inherit;
+    padding: .45rem .65rem;
+    border-radius: .75rem;
+    border: 1px solid rgba(0,0,0,0.12);
+    background: rgba(255,255,255,0.92);
+    resize: vertical;
+}
+
+.contact-form textarea{
+    min-height: 110px;
+}
+
+.form-error{
+    min-height: 1em;
+    margin-top: .2rem;
+    font-size: .8rem;
+    color: #fb2d2d;
+}
+
+.input-error{
+    border-color: #fb2d2d;
+    box-shadow: 0 0 0 1px rgba(251,45,45,0.35);
+}
+
+.contact-form__actions{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: flex-end;
+}

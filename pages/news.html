@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Chill Gallery — привет</title>
     <link rel="stylesheet" href="../style/styles.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/other.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
@@ -24,9 +28,8 @@
             <span class="visually-hidden">Меню</span>
         </button>
         <ul class="nav-list"  id="nav-list">
-            <li><a class="nav-link active" href="../index.html">главная</a></li>
+            <li><a class="nav-link" href="../index.html">главная</a></li>
             <li><a class="nav-link  active" href="../pages/news.html" aria-current="page">новости</a></li>
-            <li><a class="nav-link" href="../pages/practices.html">практики</a></li>
             <li><a class="nav-link" href="../pages/goods.html">товары</a></li>
             <li><a class="nav-link" href="../pages/contacts.html">контакты</a></li>
         </ul>
@@ -35,16 +38,40 @@
 
 <main id="main" class="main">
     <h1 class="section-title">Новости</h1>
+
     <section class="news-list">
         <article class="news-card">
-            <h2 class="news-title">Появилась «густая» раскладка</h2>
-            <p class="news-meta">11.11.2025 • Chill Team</p>
-            <p class="news-text">Нажми «плотнее» на главной — сетка сгруппируется без медиазапросов.</p>
+            <div class="news-media">
+                <picture>
+                    <img class="news-image"
+                         src="../images/news/n1.jpg"
+                         width="400" height="260"
+                         alt="Новая плотная раскладка главной страницы"
+                         loading="lazy">
+                </picture>
+            </div>
+            <div class="news-body">
+                <h2 class="news-title">Листик упал</h2>
+                <p class="news-meta">11.11.2023</p>
+                <p class="news-text">Никто не видел, как это произошло</p>
+            </div>
         </article>
+
         <article class="news-card">
-            <h2 class="news-title">Добавлены AVIF/WebP</h2>
-            <p class="news-meta">11.11.2025 • Chill Team</p>
-            <p class="news-text">Картинки грузятся быстрее, CLS≈0 — у img стоят width/height.</p>
+            <div class="news-media">
+                <picture>
+                    <img class="news-image"
+                         src="../images/news/n2.jpg"
+                         width="400" height="260"
+                         alt="Картинки в формате AVIF и WebP"
+                         loading="lazy">
+                </picture>
+            </div>
+            <div class="news-body">
+                <h2 class="news-title">Повесили фонарь</h2>
+                <p class="news-meta">11.11.2023</p>
+                <p class="news-text">Зачем</p>
+            </div>
         </article>
     </section>
 </main>

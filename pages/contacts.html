@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <title>Chill Gallery — привет</title>
     <link rel="stylesheet" href="../style/styles.css">
+    <link rel="stylesheet" href="../style/header.css">
+    <link rel="stylesheet" href="../style/index.css">
+    <link rel="stylesheet" href="../style/other.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400..800&display=swap" rel="stylesheet">
@@ -26,42 +30,122 @@
         <ul class="nav-list"  id="nav-list">
             <li><a class="nav-link" href="../index.html">главная</a></li>
             <li><a class="nav-link" href="../pages/news.html">новости</a></li>
-            <li><a class="nav-link" href="../pages/practices.html">практики</a></li>
             <li><a class="nav-link" href="../pages/goods.html">товары</a></li>
             <li><a class="nav-link  active" href="../pages/contacts.html" aria-current="page">контакты</a></li>
         </ul>
     </nav>
 </header>
-
 <main id="main" class="main">
-    <section class="contacts">
-        <img class="contact-photo" src="../images/contact-400.jpg" width="320" height="240" alt="Пёс приветствует">
-        <p><strong>E-mail:</strong> <a class="contact-link" href="mailto:hello@chill.gallery">hello@chill.gallery</a></p>
-        <p><strong>Telegram:</strong> <a class="contact-link" href="#">@chill_gallery</a></p>
-        <div class="contact-buttons">
-            <button class="btn" onclick="contactModal.showModal()">Написать нам</button>
-        </div>
+    <h1 class="section-title">Контакты</h1>
+
+    <section class="contacts-layout">
+        <section class="contacts">
+            <img class="contact-photo" src="../images/contact-400.jpg"
+                 width="320" height="240" alt="Пёс приветствует">
+            <p><strong>E-mail:</strong> <a class="contact-link" href="mailto:hello@chill.gallery">hello@chill.gallery</a></p>
+            <p><strong>Telegram:</strong> <a class="contact-link" href="#">@chill_gallery</a></p>
+        </section>
+
+        <section class="contact-form">
+            <h2 class="contact-form__title">Написать нам</h2>
+
+            <form id="contactForm" class="contact-form__form" novalidate>
+                <div class="contact-form__row">
+                    <div class="contact-form__field">
+                        <label class="contact-form__label">
+                            Имя
+                            <input type="text" name="name" id="contact-name" autocomplete="name">
+                        </label>
+                        <p class="form-error" id="error-name"></p>
+                    </div>
+
+                    <div class="contact-form__field">
+                        <label class="contact-form__label">
+                            E-mail
+                            <input type="email" name="email" id="contact-email" autocomplete="email">
+                        </label>
+                        <p class="form-error" id="error-email"></p>
+                    </div>
+                </div>
+
+                <div class="contact-form__field">
+                    <label class="contact-form__label">
+                        Сообщение
+                        <textarea name="message" id="contact-message" rows="4"></textarea>
+                    </label>
+                    <p class="form-error" id="error-message"></p>
+                </div>
+
+                <div class="contact-form__actions">
+                    <button type="submit" class="btn">Отправить</button>
+                </div>
+            </form>
+        </section>
     </section>
 </main>
 
 <footer class="footer">© 2025 chill.gallery</footer>
 
-<dialog id="contactModal">
-    <form id="feedbackForm" method="dialog" class="modal">
-        <h2>Обратная связь</h2>
-        <label>Имя <input required name="name"></label>
-        <label>E-mail <input required type="email" name="email"></label>
-        <label>Сообщение <textarea required name="message"></textarea></label>
-        <div class="modal__actions">
-            <button class="btn btn--ghost" value="cancel">Отмена</button>
-            <button class="btn" value="ok">Отправить</button>
-        </div>
-    </form>
-</dialog>
-
 <script>
-    document.getElementById('contactModal').addEventListener('click', e=>{
-        if(e.target.nodeName==='DIALOG') e.target.close();
+    const form = document.getElementById('contactForm');
+
+    const nameInput = document.getElementById('contact-name');
+    const emailInput = document.getElementById('contact-email');
+    const messageInput = document.getElementById('contact-message');
+
+    const errorName = document.getElementById('error-name');
+    const errorEmail = document.getElementById('error-email');
+    const errorMessage = document.getElementById('error-message');
+
+    function clearErrors() {
+        [nameInput, emailInput, messageInput].forEach(input => {
+            input.classList.remove('input-error');
+        });
+        [errorName, errorEmail, errorMessage].forEach(el => {
+            el.textContent = '';
+        });
+    }
+
+    function validateEmail(value) {
+        return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(value);
+    }
+
+    form.addEventListener('submit', event => {
+        event.preventDefault();
+        clearErrors();
+
+        let hasError = false;
+
+        const nameValue = nameInput.value.trim();
+        const emailValue = emailInput.value.trim();
+        const messageValue = messageInput.value.trim();
+
+        if (!nameValue) {
+            nameInput.classList.add('input-error');
+            errorName.textContent = 'Введите имя';
+            hasError = true;
+        }
+
+        if (!emailValue) {
+            emailInput.classList.add('input-error');
+            errorEmail.textContent = 'Укажите e-mail';
+            hasError = true;
+        } else if (!validateEmail(emailValue)) {
+            emailInput.classList.add('input-error');
+            errorEmail.textContent = 'Похоже, здесь опечатка';
+            hasError = true;
+        }
+
+        if (!messageValue) {
+            messageInput.classList.add('input-error');
+            errorMessage.textContent = 'Напишите хотя бы пару строк';
+            hasError = true;
+        }
+
+        if (!hasError) {
+            form.reset();
+            alert('Спасибо! Сообщение отправлено (пока что просто всплывашкой).');
+        }
     });
 </script>
 </body>
