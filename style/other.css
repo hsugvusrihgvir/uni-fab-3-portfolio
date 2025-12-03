@@ -140,6 +140,9 @@
 /* кнопка */
 
 .btn{
+    margin-top: auto;
+    align-self: stretch;
+
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -168,6 +171,7 @@
             box-shadow .15s ease,
             background .15s ease,
             opacity .15s ease;
+
 }
 
 .btn:hover{
