@@ -1,5 +1,4 @@
-
-[Публичная страница на GitHub Pages]([https://hsugvusrihgvir.github.io/uni-fab-3-portfolio/](https://hsugvusrihgvir.github.io/uni-fab-3-portfolio/))
+[Публичная страница на GitHub Pages](https://hsugvusrihgvir.github.io/uni-fab-3-portfolio/)
 
 ![img.png](images/1.jpg)
 
